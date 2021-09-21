@@ -1,44 +1,10 @@
-def just_run_it_already():
-    z = 0
-    while z == 0:
-        a = input('Введите положительное натуральное число для проверки:')
-        if not a.isdigit():
-            print('Ошибка, некорректные входные данные')
-        else:
-            a = int(a)
-            z =+ 1
-    if a == 0:
-        print('Число не является числом нивена')
-        print('Число не является множественным числом нивена')
-    else:
-        first = a
-        c = 0
-        x = 0
-        while first > 0:
-            c += first % 10
-            first //= 10
-        if a % c == 0:
-            print('Число является числом нивена')
-            second = a // c
-            while second > 0:
-               x += second % 10
-               second //= 10
-            if (a // c) % x == 0:
-               print('Число является множественным числом нивена')
-            else:
-               print('Число не является множественным числом нивена')
-        else:
-            print('Число не является числом нивена')
-            print('Число не является множественным числом нивена')
-
-
-print('Числа Нивена — натуральные числа, делящиеся нацело на сумму своих цифр.')
-S = 'meh'
-while S != 'нет':
-    print ('Введите "да", чтобы проверить число, или "нет", чтобы завершить программу')
-    if (S := input()) == 'да':
-        just_run_it_already()
-    elif S == 'нет':
-        print('Программа завершена')
-    else:
-        print('Ошибка')
+num = int(input())
+co_num = list(range(1, num + 1))
+lent = len(co_num)
+for i in range(1, num + 1):
+    co_num = list(range(1, i + 1))
+    co_num = co_num[::-1]
+    print((' ' * lent) * 2, *co_num)
+for i in range(num, 0, -1):
+    co_num = list(range(1, i + 1))
+    print((' ' * (lent - i)) * 2, *co_num)
