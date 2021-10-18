@@ -58,6 +58,7 @@ STUDENTS = {'Chongyun': {'Adepte-knowlege': 4,
 
 
 def avg_4_students():
+    """Функция высчитывает и выводит среднее значение для всех студентов"""
     avgm = []
     for student, subjects in STUDENTS.items():
         marks = [mark for subj, mark in subjects.items()]
@@ -67,6 +68,7 @@ def avg_4_students():
 
 
 def average_value():
+    """Функция высчитывает и выводит среднее значение по предметам"""
     global SUBJ, STUDENTS
     res = {sub: [] for sub in SUBJ}
     for stud, subj in STUDENTS.items():
@@ -82,6 +84,7 @@ def average_value():
 
 
 def printable_marks():
+    """Функция выводит всех студентов и их оценки по предметам"""
     global STUDENTS
     res = ''
     for stud, marks in STUDENTS.items():
@@ -95,7 +98,6 @@ def printable_marks():
 subjlist = list(STUDENTS[list(STUDENTS.keys())[0]].keys())
 while not set(SUBJ := input('Введите предметы через пробел\n').split(' ')).issubset(subjlist):
     print('Какой-то из предметов неверно написан либо не существует')
-# SUBJ = ['Maths', 'Economy', 'History']
 menu = {
     '1': ('Вывести все данные', printable_marks),
     '2': ('Средние оценки по выбранному предмету', average_value),
