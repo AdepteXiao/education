@@ -3,6 +3,7 @@
 ОП Лабораторная №2
 Вариант 22
 """
+from sys import exit
 
 STUDENTS = {'Chongyun': {'Adepte-knowlege': 4,
                          'Economy': 4,
@@ -67,25 +68,44 @@ def avg_4_students():
 
 def average_value():
     global SUBJ, STUDENTS
-    vals = {sub: [] for sub in SUBJ}
+    res = {sub: [] for sub in SUBJ}
     for stud, subj in STUDENTS.items():
+        for sub, val in subj.items():
+            if sub in res.keys():
+                res[sub].append(val)
+    for sub in res.keys():
+        res[sub] = round(sum(res[sub]) / len(res[sub]), 2)
+    ress = ''
+    for key, val in res.items():
+        ress += f'{key} - {val}\n'
+    return ress
 
-    print(vals)
+
+def printable_marks():
+    global STUDENTS
+    res = ''
+    for stud, marks in STUDENTS.items():
+        res += f'Оценки {stud}:\n'
+        for sub, val in marks.items():
+            res += f'{val} по {sub}\n'
+        res += '\n'
+    return res
 
 
 subjlist = list(STUDENTS[list(STUDENTS.keys())[0]].keys())
 while not set(SUBJ := input('Введите предметы через пробел\n').split(' ')).issubset(subjlist):
     print('Какой-то из предметов неверно написан либо не существует')
-
-average_value()
-# print('')
-# text = 'meh'
-# while text != 'нет':
-#     print('Введите "да", чтобы начать, или "нет", чтобы завершить программу')
-#     if (text := input()) == 'да':
-#         just_run_it_already()
-#     elif text == 'нет':
-#         print('Программа завершена')
-#     else:
-#         print('Ошибка')
-# print(avg_4_students())
+# SUBJ = ['Maths', 'Economy', 'History']
+menu = {
+    '1': ('Вывести все данные', printable_marks),
+    '2': ('Средние оценки по выбранному предмету', average_value),
+    '3': ('Средние оценки для всех студентов', avg_4_students),
+    '4': ('Выход из программы', exit)
+}
+while True:
+    printable_menu = '\n'.join(map(lambda y: ' - '.join(y), map(lambda x: (x[0], x[1][0]), menu.items())))
+    opt = input(f"Выберете опцию:\n{printable_menu}\n")
+    if opt in menu.keys():
+        print(menu[opt][1]())
+    else:
+        print('Такого варианта выбора нет')
