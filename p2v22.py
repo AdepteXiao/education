@@ -113,3 +113,4 @@ while True:
         print(menu[opt[1]]())
     else:
         print('Такого варианта выбора нет\n')
+
