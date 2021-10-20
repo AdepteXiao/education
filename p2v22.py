@@ -89,7 +89,7 @@ def printable_marks():
     res = ''
     for stud, marks in STUDENTS.items():
         res += f'Оценки {stud}:\n'
-        for sub, val in marks.items():
+        for sub, val2 in marks.items():
             res += f'{val} по {sub}\n'
         res += '\n'
     return res
@@ -105,9 +105,11 @@ menu = {
     '4': ('Выход из программы', exit)
 }
 while True:
-    printable_menu = '\n'.join(map(lambda y: ' - '.join(y), map(lambda x: (x[0], x[1][0]), menu.items())))
+    printable_menu = ''
+    for key3, val3 in menu.items():
+        printable_menu += f'{key3} - {val3[0]}\n'
     opt = input(f"Выберете опцию:\n{printable_menu}\n")
     if opt in menu.keys():
-        print(menu[opt][1]())
+        print(menu[opt[1]]())
     else:
-        print('Такого варианта выбора нет')
+        print('Такого варианта выбора нет\n')
