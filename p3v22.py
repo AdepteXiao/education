@@ -1,6 +1,6 @@
 """
 КИ21 - 17/1b Демёхина Арина Руслановна
-ОП Лабораторная №2
+ОП Лабораторная №3
 Вариант 22
 """
 from sys import exit
@@ -8,7 +8,7 @@ from sys import exit
 alphabet_upper = 'abcdefghijklmnopqrstuvwxyz'
 alphabet_lower = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers = '1234567890'
-lis = ''.join([alphabet_lower, alphabet_upper, numbers])
+lis = list(''.join([alphabet_lower, alphabet_upper, numbers]))
 passwords = []
 
 
@@ -24,31 +24,32 @@ def symbols_and_frequency():
             lower.append(symb)
         else:
             num.append(symb)
-    print(f'Символы верхнего регистра: {upper}\n/'
-          f'Их частота: {round(len(upper) / len("".join(passwords)), 2)}\n/'
-          f'Символы нижнего регистра: {lower}\n/'
-          f'Их частота: {round(len(lower) / len("".join(passwords)), 2)}\n/'
-          f'Символы числа: {num}\n/'
-          f'Их частота: {round(len(num) / len("".join(passwords)), 2)}\n/'
+    print(f'Символы верхнего регистра: {upper}\n'
+          f'Их частота: {round(len(upper) / len("".join(passwords)), 2)}\n'
+          f'Символы нижнего регистра: {lower}\n'
+          f'Их частота: {round(len(lower) / len("".join(passwords)), 2)}\n'
+          f'Символы числа: {num}\n'
+          f'Их частота: {round(len(num) / len("".join(passwords)), 2)}\n'
           )
 
 
 def passw_again():
     """Новый ввод паролей"""
-    while not set(passwords := input('Введите пароли через пробел\n').split(' ')).issubset(lis):
+    while not set(passwords := ''.join(input('Введите пароли через пробел\n').split(' '))).issubset(lis):
         print('Ошибка, пароли должны содержать только латинские буквы или цифры')
 
 
 def frequency_for_symbol():
     """Частота введенных символов"""
-    numm = 0
+    passwords_tog = ''.join(passwords)
     while not set(sym := input('Введите символы через пробел\n').split(' ')).issubset(lis):
         print('Ошибка, символы должны быть латинскими буквами или цифрами')
     for symbo in sym:
-        for i in passwords:
+        numm = 0
+        for i in ''.join(passwords):
             if i == symbo:
                 numm += 1
-        print(f'Символ: {symbo}, частота: {round(numm / len("".join(passwords)), 2)}')
+        print(f'Символ: {symbo}, частота: {round(numm / len(passwords_tog), 2)}')
 
 
 menu = {
@@ -57,7 +58,7 @@ menu = {
     '3': ('Ввести пароли заново', passw_again),
     '4': ('Выход из программы', exit)
 }
-while not set(passwords := input('Введите пароли через пробел\n').split(' ')).issubset(lis):
+while not set(passwords := ''.join(input('Введите пароли через пробел\n').split(' '))).issubset(lis):
     print('Ошибка, пароли должны содержать только латинские буквы или цифры')
 while True:
     printable_menu = ''
