@@ -3,13 +3,10 @@
 ОП Лабораторная №3
 Вариант 22
 """
-from sys import exit
-
-alphabet_upper = 'abcdefghijklmnopqrstuvwxyz'
-alphabet_lower = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alphabet_lower = 'abcdefghijklmnopqrstuvwxyz'
+alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers = '1234567890'
-lis = list(''.join([alphabet_lower, alphabet_upper, numbers]))
-passwords = []
+lis = list(alphabet_lower + alphabet_upper + numbers)
 
 
 def symbols_and_frequency():
@@ -35,6 +32,7 @@ def symbols_and_frequency():
 
 def passw_again():
     """Новый ввод паролей"""
+    global passwords
     while not set(passwords := ''.join(input('Введите пароли через пробел\n').split(' '))).issubset(lis):
         print('Ошибка, пароли должны содержать только латинские буквы или цифры')
 
@@ -66,6 +64,6 @@ while True:
         printable_menu += f'{key} - {val[0]}\n'
     opt = input(f"Выберете опцию:\n{printable_menu}\n")
     if opt in menu.keys():
-        print(menu[opt][1]())
+        menu[opt][1]()
     else:
         print('Такого варианта выбора нет\n')
