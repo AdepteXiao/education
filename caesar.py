@@ -3,12 +3,10 @@ def get_el(arr, ind):
     return arr[a]
 
 
-def caesar():
-    print('Введите текст, а затем сдвиг')
-    text = input()
-    shift = int(input())
-    alphabet_upper = list('abcdefghijklmnopqrstuvwxyz')
-    alphabet_lower = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+def caesar(text, shift):
+
+    alphabet_upper = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    alphabet_lower = list('abcdefghijklmnopqrstuvwxyz')
 
     cipher = []
     for i in text:
@@ -21,12 +19,20 @@ def caesar():
     return ''.join(cipher)
 
 
-z = 'meh'
-while z != 'нет':
-    print('Введите "да", чтобы начать, или "нет", чтобы завершить программу')
-    if (z := input()) == 'да':
-        print(caesar())
-    elif z == 'нет':
-        print('Программа завершена')
-    else:
-        print('Ошибка')
+def main():
+    z = 'meh'
+    while z != 'нет':
+        print('Введите "да", чтобы начать, или "нет", чтобы завершить программу')
+        if (z := input()) == 'да':
+            print('Введите текст, а затем сдвиг')
+            text = input()
+            shift = int(input())
+            print(caesar(text, shift))
+        elif z == 'нет':
+            print('Программа завершена')
+        else:
+            print('Ошибка')
+
+
+if __name__ == '__main__':
+    main()
