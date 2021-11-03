@@ -30,13 +30,6 @@ def symbols_and_frequency():
           )
 
 
-def passw_again():
-    """Новый ввод паролей"""
-    global passwords
-    while not set(passwords := ''.join(input('Введите пароли через пробел\n').split(' '))).issubset(lis):
-        print('Ошибка, пароли должны содержать только латинские буквы или цифры')
-
-
 def frequency_for_symbol():
     """Частота введенных символов"""
     passwords_tog = ''.join(passwords)
@@ -53,8 +46,7 @@ def frequency_for_symbol():
 menu = {
     '1': ('Общие символы и частота их появления', symbols_and_frequency),
     '2': ('Частота появления каждого символа', frequency_for_symbol),
-    '3': ('Ввести пароли заново', passw_again),
-    '4': ('Выход из программы', exit)
+    '3': ('Выход из программы', exit)
 }
 while not set(passwords := ''.join(input('Введите пароли через пробел\n').split(' '))).issubset(lis):
     print('Ошибка, пароли должны содержать только латинские буквы или цифры')
