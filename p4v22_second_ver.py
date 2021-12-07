@@ -37,8 +37,12 @@ def polska():
     print(usefulexp)
     for x in range(1, len(usefulexp)):
         i = int(usefulexp[x])
-        print(x, usefulexp[x])
-        variations[cipher[checkout[-1]]][i]()
+        func = variations[str(cipher[checkout[-1]])][i]
+        if func.__name__ == 'one':
+            func(i)
+        else:
+            func()
+        print(checkout)
 
 
 def one(i):
