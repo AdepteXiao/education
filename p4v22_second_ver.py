@@ -15,24 +15,30 @@ def printable_expression():
         return expression
 
 
-def input_expression():
+def polska():
     global expression
     checklist = 'abcdefghijklmnopqrstuvwxyz1234567890/+-*()'
     while not set(expression := list(input('Введите выражение без пробелов:\n'))).issubset(checklist):
         print('Выражение введено неверно, попробуйте снова')
     expression.insert(0, '!')
     expression.append('!')
+    print(expression)
     numberletter = []
     usefulexp = []
     for i in expression:
-        if i.isdigit or i.isalpha:
+        print(i)
+        if i.isdigit() or i.isalpha():
             numberletter.append('p')
         else:
             numberletter.append(i)
+    print(numberletter)
     for j in numberletter:
         if j in cipher.keys():
             usefulexp.append(cipher[j])
-    return usefulexp
+    print(usefulexp)
+    for x in range(1, len(usefulexp)):
+        i = int(usefulexp[x])
+        variations[usefulexp[x-1]][i]()
 
 
 def one(i):
@@ -56,12 +62,6 @@ def five():
     print('Ошибка в написании формулы, попробуйте снова')
 
 
-def polska(usefulexp):
-    for x in range(1, len(usefulexp)):
-        i = str(usefulexp[x])
-        variations[usefulexp[x-1]][i]()
-
-
 result = []
 checkout = []
 expression = []
@@ -82,9 +82,8 @@ variations = {'1': (four, one, one, one, one, one, one, five),
               '7': (five, one, one, one, one, one, one, three)}
 menu = {
     '1': ('Вывести введенное выражение', printable_expression),
-    '2': ('Ввести выражение', input_expression),
-    '3': ('Преобразовать в обратную польскую запись', polska),
-    '4': ('Выход из программы', exit)
+    '2': ('Преобразовать в обратную польскую запись', polska),
+    '3': ('Выход из программы', exit)
 }
 while True:
     printable_menu = ''
