@@ -37,25 +37,28 @@ def polska():
     print(usefulexp)
     for x in range(1, len(usefulexp)):
         i = int(usefulexp[x])
-        func = variations[str(cipher[checkout[-1]])][i]
+        func = variations[str(checkout2[-1])][i]
         if func.__name__ == 'one':
-            func(i)
+            func(x, usefulexp)
         else:
             func()
-        print(checkout)
+        print(result)
 
 
-def one(i):
-    checkout.append(expression[i])
+def one(x, usefulexp):
+    checkout.append(expression[x])
+    checkout2.append(usefulexp[x])
 
 
 def two():
     result.append(checkout[-1])
     checkout.pop()
+    checkout2.pop()
 
 
 def three():
     checkout.pop()
+    checkout2.pop()
 
 
 def four():
@@ -68,6 +71,7 @@ def five():
 
 result = []
 checkout = ['!']
+checkout2 = ['1']
 expression = []
 cipher = {'!': 1,
           '+': 2,
