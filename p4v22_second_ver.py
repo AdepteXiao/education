@@ -26,7 +26,6 @@ def polska():
     numberletter = []
     usefulexp = []
     for i in expression:
-        print(i)
         if i.isdigit() or i.isalpha():
             numberletter.append('p')
         else:
@@ -38,11 +37,12 @@ def polska():
     print(usefulexp)
     for x in range(1, len(usefulexp)):
         i = int(usefulexp[x])
-        variations[usefulexp[x-1]][i]()
+        print(x, usefulexp[x])
+        variations[cipher[checkout[-1]]][i]()
 
 
 def one(i):
-    checkout.append(i)
+    checkout.append(expression[i])
 
 
 def two():
@@ -63,7 +63,7 @@ def five():
 
 
 result = []
-checkout = []
+checkout = ['!']
 expression = []
 cipher = {'!': 1,
           '+': 2,
