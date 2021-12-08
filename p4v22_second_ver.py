@@ -12,17 +12,16 @@ def printable_expression():
     if expression == '':
         print('Вы ещё не ввели никакое выражение')
     else:
-        return expression
+        return ''.join(expression)
 
 
 def polska():
+
     global expression
     checklist = 'abcdefghijklmnopqrstuvwxyz1234567890/+-*()'
     while not set(expression := list(input('Введите выражение без пробелов:\n'))).issubset(checklist):
         print('Выражение введено неверно, попробуйте снова')
-    expression.insert(0, '!')
     expression.append('!')
-    print(expression)
     numberletter = []
     usefulexp = []
     for i in expression:
@@ -30,24 +29,26 @@ def polska():
             numberletter.append('p')
         else:
             numberletter.append(i)
-    print(numberletter)
     for j in numberletter:
         if j in cipher.keys():
             usefulexp.append(cipher[j])
-    print(usefulexp)
-    for x in range(1, len(usefulexp)):
-        i = int(usefulexp[x])
-        func = variations[str(checkout2[-1])][i]
-        if func.__name__ == 'one':
-            func(x, usefulexp)
-        else:
-            func()
-        print(result)
+    exp = usefulexp[::1]
+    for v in range(0, len(expression)):
+        strelka = int(usefulexp[0])
+        usefulexp.pop(0)
+        while strelka != 0:
+            func = variations[str(checkout2[-1])][strelka]
+            if func.__name__ == 'one':
+                func(v, exp)
+                strelka = 0
+            else:
+                func()
+    return f"Переработанный результат:\n{''.join(result)}"
 
 
-def one(x, usefulexp):
-    checkout.append(expression[x])
-    checkout2.append(usefulexp[x])
+def one(v, exp):
+    checkout.append(expression[v])
+    checkout2.append(exp[v])
 
 
 def two():
@@ -62,11 +63,11 @@ def three():
 
 
 def four():
-    print(f'Переработанный результат:\n{result}')
+    return f"Переработанный результат:\n{''.join(result)}"
 
 
 def five():
-    print('Ошибка в написании формулы, попробуйте снова')
+    return 'Ошибка в написании формулы, попробуйте снова'
 
 
 result = []
