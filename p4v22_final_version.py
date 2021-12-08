@@ -65,25 +65,25 @@ def four():
 
 
 def five():
-    return 'Ошибка в написании формулы, попробуйте снова'
+    print('Ошибка в написании формулы, попробуйте снова')
 
 
 result = []
 checkout = ['!']
 expression = []
-cipher = {'!': 1,
-          '+': 2,
-          '-': 3,
-          '*': 4,
-          '/': 5,
-          '(': 6,
-          ')': 7}
-variations = {'1': (four, one, one, one, one, one, five),
+cipher = {'!': 0,
+          '+': 1,
+          '-': 2,
+          '*': 3,
+          '/': 4,
+          '(': 5,
+          ')': 6}
+variations = {'0': (four, one, one, one, one, one, five),
+              '1': (two, two, two, one, one, one, two),
               '2': (two, two, two, one, one, one, two),
-              '3': (two, two, two, one, one, one, two),
+              '3': (two, two, two, two, two, one, two),
               '4': (two, two, two, two, two, one, two),
-              '5': (two, two, two, two, two, one, two),
-              '6': (five, one, one, one, one, one, three)}
+              '5': (five, one, one, one, one, one, three)}
 menu = {
     '1': ('Вывести введенное выражение', printable_expression),
     '2': ('Преобразовать в обратную польскую запись', polska),
