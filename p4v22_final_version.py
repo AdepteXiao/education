@@ -24,27 +24,34 @@ def polska():
     checklist = 'abcdefghijklmnopqrstuvwxyz1234567890/+-*()'
     while not set(expression := list(input('Введите выражение без пробелов:\n'))).issubset(checklist):
         print('Выражение введено неверно, попробуйте снова')
-    expression.append('!')
-    for i in expression:
-        strelka = 0
-        while strelka == 0:
-            if i.isdigit() or i.isalpha():
-                result.append(i)
-                print(result)
-                strelka += 1
-            else:
-                func = variations[str(cipher[checkout[-1]])][int(cipher[i])]
-                print(func.__name__)
-                if func.__name__ == 'one':
-                    func(i)
+    op = 0
+    cl = 0
+    for x in expression:
+        if x == ')':
+            op += 1
+        elif x == '(':
+            cl += 1
+    if op == cl:
+        expression.append('!')
+        for i in expression:
+            strelka = 0
+            while strelka == 0:
+                if i.isdigit() or i.isalpha():
+                    result.append(i)
                     strelka += 1
-                elif func.__name__ == 'two':
-                    func()
                 else:
-                    func()
-                    strelka += 1
-                print(checkout)
-    return f"Переработанный результат:\n{''.join(result)}"
+                    func = variations[str(cipher[checkout[-1]])][int(cipher[i])]
+                    if func.__name__ == 'one':
+                        func(i)
+                        strelka += 1
+                    elif func.__name__ == 'two':
+                        func()
+                    else:
+                        func()
+                        strelka += 1
+    else:
+        print('Проверьте правильность написания скобок')
+        polska()
 
 
 def one(i):
@@ -61,7 +68,7 @@ def three():
 
 
 def four():
-    return f"Переработанный результат:\n{''.join(result)}"
+    print(f"Переработанный результат:\n{''.join(result)}")
 
 
 def five():
