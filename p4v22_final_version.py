@@ -9,6 +9,7 @@ from sys import exit
 
 
 def printable_expression():
+    """Вывод на экран введенного выражения"""
     if expression == '':
         print('Вы ещё не ввели никакое выражение')
     else:
@@ -16,9 +17,8 @@ def printable_expression():
 
 
 def polska():
-    global expression
-    global result
-    global checkout
+    """Преобразование в обратную польскую запись вводимого числа"""
+    global expression, checkout, result
     result = []
     checkout = ['!']
     checklist = 'abcdefghijklmnopqrstuvwxyz1234567890/+-*()'
