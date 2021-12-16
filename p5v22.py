@@ -14,10 +14,10 @@ with open("p5v22.csv", "w", newline='') as file:
     fields = ['марка', 'модель', 'год выпуска', 'цена']
     writer = csv.DictWriter(file, delimiter=';', fieldnames=fields)
     writer.writeheader()
-    writer.writerow({'марка': 'Samsung', 'модель': 'Galaxy A22s', 'год выпуска': '2020', 'цена': '21999'})
-    writer.writerow({'марка': 'Huawey', 'модель': 'P30 Lite', 'год выпуска': '2019', 'цена': '9200'})
-    writer.writerow({'марка': 'Honor', 'модель': '10X Lite 4', 'год выпуска': '2019', 'цена': '15299'})
-    writer.writerow({'марка': 'Nokia', 'модель': '3310', 'год выпуска': '2000', 'цена': '4490'})
+    writer.writerow({'марка': 'Samsung', 'модель': 'Galaxy A22s', 'год выпуска': '2020', 'цена': 21999})
+    writer.writerow({'марка': 'Huawey', 'модель': 'P30 Lite', 'год выпуска': '2019', 'цена': 9200})
+    writer.writerow({'марка': 'Honor', 'модель': '10X Lite 4', 'год выпуска': '2019', 'цена': 15299})
+    writer.writerow({'марка': 'Nokia', 'модель': '3310', 'год выпуска': '2000', 'цена': 4490})
 models = ['Galaxy A22s',  'P30 Lite', '10X Lite 4', 'a3310']
 
 
@@ -43,8 +43,8 @@ def searching_by_the_model():
 
 
 def sorting_by_price():
-    with open('p5v22.csv', 'rb') as f:
-        data = csv.reader(open('p5v22.csv'), delimiter=',')
+    with open('p5v22.csv', 'r+') as f:
+        data = csv.reader(f, delimiter=';')
         sortedlist = sorted(data, key=operator.itemgetter(3), reverse=True)
         for item in sortedlist:
             print(item)
