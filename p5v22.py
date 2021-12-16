@@ -18,7 +18,7 @@ with open("p5v22.csv", "w", newline='') as file:
     writer.writerow({'марка': 'Huawey', 'модель': 'P30 Lite', 'год выпуска': '2019', 'цена': '9200'})
     writer.writerow({'марка': 'Honor', 'модель': '10X Lite 4', 'год выпуска': '2019', 'цена': '15299'})
     writer.writerow({'марка': 'Nokia', 'модель': '3310', 'год выпуска': '2000', 'цена': '4490'})
-models = ['Galaxy A22s',  'P30 Lite', '10X Lite 4', '3310']
+models = ['Galaxy A22s',  'P30 Lite', '10X Lite 4', 'a3310']
 
 
 def reading_whole_file():
@@ -36,8 +36,8 @@ def searching_by_the_model():
         print('Ошибка в написании модели, попробуйте снова')
     with open('p5v22.csv', 'r') as f:
         reader = csv.reader(f, delimiter=';')
-        for line in enumerate(reader):
-            if line[2] == model:
+        for line in reader:
+            if line[1] == model:
                 print(" ".join(line))
         f.close()
 
@@ -62,13 +62,13 @@ def adding():
         writer.writeheader()
         wri.writerow(data)
         f.close()
+    models.append(data['модель'])
 
 
 def deleting():
-    lis = list(input("Введите марку, модель, год выпуска и цену через пробел"))
     with open('p5v22.csv', 'a', newline='') as f:
         wri = csv.writer(f)
-        wri.writerow(lis)
+        wri.writerow('')
         f.close()
 
 
@@ -78,7 +78,7 @@ menu = {
     '3': ('Сортировать по цене', sorting_by_price),
     '4': ('Добавить строку', adding),
     '5': ('Удалить строку', deleting),
-    '7': ('Выход из программы', exit)}
+    '6': ('Выход из программы', exit)}
 while True:
     printable_menu = ''
     for key3, val3 in menu.items():
